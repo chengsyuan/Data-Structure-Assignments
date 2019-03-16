@@ -9,6 +9,7 @@ Data Structure Assignments in C99.
 * Stack
   * Basic Stack
   * Reverse Polish Calculator
+  * Expression to Convert Polish Expression
 * Queue
 * Circular Queue
 
