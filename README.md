@@ -7,6 +7,8 @@ Data Structure Assignments in C99.
 * SeqList
 * LinkList
 * Stack
+  * Basic Stack
+  * Reverse Polish Calculator
 * Queue
 * Circular Queue
 
