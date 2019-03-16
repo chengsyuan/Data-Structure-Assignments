@@ -6,4 +6,6 @@ Data Structure Assignments in C99.
 
 * SeqList
 * LinkList
-* ...
+* Stack
+* Queue
+
