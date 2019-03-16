@@ -8,4 +8,5 @@ Data Structure Assignments in C99.
 * LinkList
 * Stack
 * Queue
+* Circular Queue
 
