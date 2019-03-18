@@ -3,7 +3,7 @@
 
 ### 1.用类C语言设计算法判断所输入的以‘@’为结束标记的字符串是否形如“序列1&序列2”的形式，其中序列1和序列2都不含‘&’字符，序列1是序列2的逆序列，比如“a+b&b+a@”就是一个属于该模式的字符串，而“a+b&b-a@”则不是。
 
-详细代码放在https://github.com/chengsyuan/Data-Structure-Assignments/Assignment2/q1.cpp
+详细代码放在 https://github.com/chengsyuan/Data-Structure-Assignments/blob/master/Assignment2/q1.cpp
 
 ```c++
 int isHuiwen(char str[]) {
@@ -99,7 +99,7 @@ int sizeOfQueue(Circular_Queue * queue) {
 
 ### 4.设计算法将由+，-，*，/, (, )和单字母变量组成的普通表达式转换成逆波兰式
 
-详细代码放在https://github.com/chengsyuan/Data-Structure-Assignments/Assignment2/q4.cpp
+详细代码放在 https://github.com/chengsyuan/Data-Structure-Assignments/blob/master/Assignment2/q4.cpp
 
 ```c++
 int getOperatorPriority(char ch) {
