@@ -37,7 +37,7 @@ int sizeOfQueue(Circular_Queue * queue) {
 }
 
 int enQueue(Circular_Queue *queue, int value) {
-	if (sizeOfQueue(queue) == queue->max_size-1) {
+	if (sizeOfQueue(queue) == queue->max_size - 1) {
 		exit(OutOfIndex);
 	}
 
@@ -58,7 +58,7 @@ int deQueue(Circular_Queue *queue) {
 }
 
 int printQueue(Circular_Queue * queue) {
-	for (int i = queue->front; i != queue->end; i = incIndex(i ,queue->max_size))
+	for (int i = queue->front; i != queue->end; i = incIndex(i, queue->max_size))
 	{
 		printf("%d ", queue->elem[i]);
 	}
@@ -67,6 +67,13 @@ int printQueue(Circular_Queue * queue) {
 	return Ok;
 }
 
+int queueFull(Circular_Queue * queue) {
+	return sizeOfQueue(queue) == queue->max_size - 1;
+}
+
+int queueEmpty(Circular_Queue * queue) {
+	return sizeOfQueue(queue) == 0;
+}
 
 int test_queue() {
 	Circular_Queue q;
@@ -76,12 +83,16 @@ int test_queue() {
 	enQueue(&q, 4);
 	printQueue(&q);
 	printf("size = %d\n", sizeOfQueue(&q));
+	printf("queueEmpty = %d\n", queueEmpty(&q));
+	printf("queueFull = %d\n", queueFull(&q));
 
 	deQueue(&q);
 	deQueue(&q);
 	deQueue(&q);
 	deQueue(&q);
 	printQueue(&q);
+	printf("queueEmpty = %d\n", queueEmpty(&q));
+	printf("queueFull = %d\n", queueFull(&q));
 	printf("size = %d\n\n", sizeOfQueue(&q));
 
 	enQueue(&q, 1);
