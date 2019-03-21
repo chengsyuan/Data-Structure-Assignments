@@ -74,7 +74,7 @@ int test_huiwen() {
 
 | ADBC     | DACB     |
 | -------- | -------- |
-| **BDAC** | **DACB** |
+| **BDAC** | **DABC** |
 | **CABD** | **DBCA** |
 | **CADB** | **DBAC** |
 | **CDAB** | **DCAB** |
