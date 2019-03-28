@@ -27,13 +27,18 @@ Data Structure Assignments in C99.
   * deQueue
   * sizeof
   * isFull
-* DenseMatrix
+* Dense Matrix
   * Create
   * Add
   * Multiply
-* SparseMatrix
+* Sparse Matrix
   * Create
   * Add
   * Transpose and Sort
   * Print
+* BiTree
+  * Create by Preorder
+  * Preorder Traversal
+  * Inorder Traversal
+  * Postorder Traversal
 
