@@ -31,4 +31,9 @@ Data Structure Assignments in C99.
   * Create
   * Add
   * Multiply
+* SparseMatrix
+  * Create
+  * Add
+  * Transpose and Sort
+  * Print
 
