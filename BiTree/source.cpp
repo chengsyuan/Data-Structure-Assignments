@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <algorithm>
+#include <stack>
 
 #define Ok 0x01
 #define MemoryOverFlow 0x02
@@ -78,6 +79,22 @@ void printPostOrderBiTree(Node *root) {
 	}
 }
 
+void printPreOrderBiTree_Stack(Node *root) {
+	std::stack<Node *> st;
+	st.push(root);
+	while (st.size())
+	{
+		Node * p = st.top();
+		st.pop();
+
+		while (p)
+		{
+			printf("%c ", p->c);
+
+			if (p->r)
+				st.push(p->r);
+			p = p->l;
+		}
 	}
 }
 
