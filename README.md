@@ -41,4 +41,6 @@ Data Structure Assignments in C99.
   * Preorder Traversal
   * Inorder Traversal
   * Postorder Traversal
+  * Preorder Traversal (Stack Inplementation)
+  * Inorder Traversal (Stack Inplementation)
 

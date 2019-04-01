@@ -78,6 +78,39 @@ void printPostOrderBiTree(Node *root) {
 	}
 }
 
+	}
+}
+
+void printInOrderBiTree_Stack(Node *root) {
+	std::stack<Node *> st;
+	st.push(root);
+	while (st.size())
+	{
+		Node * p = st.top();
+		st.pop();
+
+		while (p)
+		{
+			st.push(p);
+			p = p->l;
+		}
+
+		while (st.size())
+		{
+			Node * p = st.top();
+			st.pop();
+
+			printf("%c ", p->c);
+			if (p->r) {
+				st.push(p->r);
+				break;
+			}
+		}
+
+	}
+}
+
+
 int testBiTree() {
 	Node *rt = (Node *)NULL;
 
@@ -92,8 +125,15 @@ int testBiTree() {
 	printPostOrderBiTree(rt);
 	printf("\n");
 
+	printPreOrderBiTree_Stack(rt);
+	printf("\n");
+
+	printInOrderBiTree_Stack(rt);
+	printf("\n");
+
 	return Ok;
 }
+
 
 int main()
 {
