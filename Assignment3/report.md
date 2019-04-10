@@ -85,41 +85,61 @@ Node* findx(Node* root, char c) {
 详细代码放在 https://github.com/chengsyuan/Data-Structure-Assignments/blob/master/Assignment3/q10.cpp
 
 ```c++
-int tot_node = 0;
-int preOrderTraverse(Node* rt, int d) {
-	int max_dep = d;
-	if (rt)
+bool isFullBiTree(Node * rt) {
+	Node *queue[MAX_SIZE], *h;
+	int head=0, tail=0; // an easy queue
+	queue[tail++] = rt; // enqueue root
+
+	rt->id = 1;// set root id to 1
+	int last_id = 0; // this id should add 1 for each iteration
+
+	while (head < tail)
 	{
-		tot_node += 1;
-		int l = preOrderTraverse(rt->l, d + 1);
-		int r = preOrderTraverse(rt->r, d + 1);
+		h = queue[head++]; // pop head
+		last_id++;
 
-		max_dep = std::max(max_dep, l);
-		max_dep = std::max(max_dep, r);
+		if (last_id != h->id)
+		{
+			return false;
+		}
+
+		// enqueue left child
+		Node* t = h->l;
+		if (t)
+		{
+			queue[tail++] = t;
+			t->id = h->id * 2;
+		}
+
+		// enqueue right child
+		t = h->r;
+		if (t)
+		{
+			queue[tail++] = t;
+			t->id = h->id * 2 + 1;
+		}
 	}
-	return max_dep;
-}
 
-bool isFullBiTree(Node* rt) {
-	tot_node = 0;
-	int dep = preOrderTraverse(rt, 0);
-	
-	return tot_node == (int)pow(2, dep - 1);
+	return true;
 }
 
 
 int testBiTree() {
-	Node *rt = (Node *)NULL;
+	Node* rt = (Node*)NULL;
 
-	rt = buildTreeByPreOrder(rt, "abd##eh##i##cf##g##");
+	rt = buildTreeByPreOrder(rt, "abd##e##c#f##", true);
 	printf("%d\n", isFullBiTree(rt));
 
-	rt = buildTreeByPreOrder(rt, "abd##e##cf##g##");
+	rt = buildTreeByPreOrder(rt, "abd##e##cf###", true);
+	printf("%d\n", isFullBiTree(rt));
+
+	rt = buildTreeByPreOrder(rt, "abd##e##cf##g##", true);
 	printf("%d\n", isFullBiTree(rt));
 	return Ok;
 }
 /* out
 0
+1
 1
 */
 ```

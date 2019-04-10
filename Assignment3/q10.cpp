@@ -18,13 +18,20 @@
 
 #define MAX_SIZE 10
 
-struct Node{
-	Node *l, *r;
+struct Node {
+	Node* l, * r;
 	char c;
+
+	int id;
 };
 
-Node * buildTreeByPreOrder(Node *root, const char s[]) {
+Node* buildTreeByPreOrder(Node* root, const char s[], bool reset=false) {
 	static int cnt = 0;
+	if (reset)
+	{
+		cnt = 0;
+	}
+
 	//printf("%d ", cnt);
 	if (cnt == -1)
 	{
@@ -37,12 +44,12 @@ Node * buildTreeByPreOrder(Node *root, const char s[]) {
 	}
 
 	if (s[cnt] == '#') {
-		root = (Node *)NULL;
+		root = (Node*)NULL;
 		cnt++;
 	}
 	else
 	{
-		root = (Node *)malloc(sizeof(Node));
+		root = (Node*)malloc(sizeof(Node));
 		root->c = s[cnt];
 		cnt++;
 
@@ -53,36 +60,56 @@ Node * buildTreeByPreOrder(Node *root, const char s[]) {
 	return root;
 }
 
-int tot_node = 0;
-int preOrderTraverse(Node* rt, int d) {
-	int max_dep = d;
-	if (rt)
+
+bool isFullBiTree(Node * rt) {
+	Node *queue[MAX_SIZE], *h;
+	int head=0, tail=0; // an easy queue
+	queue[tail++] = rt; // enqueue root
+
+	rt->id = 1;// set root id to 1
+	int last_id = 0; // this id should add 1 for each iteration
+
+	while (head < tail)
 	{
-		tot_node += 1;
-		int l = preOrderTraverse(rt->l, d + 1);
-		int r = preOrderTraverse(rt->r, d + 1);
+		h = queue[head++]; // pop head
+		last_id++;
 
-		max_dep = std::max(max_dep, l);
-		max_dep = std::max(max_dep, r);
+		if (last_id != h->id)
+		{
+			return false;
+		}
+
+		// enqueue left child
+		Node* t = h->l;
+		if (t)
+		{
+			queue[tail++] = t;
+			t->id = h->id * 2;
+		}
+
+		// enqueue right child
+		t = h->r;
+		if (t)
+		{
+			queue[tail++] = t;
+			t->id = h->id * 2 + 1;
+		}
 	}
-	return max_dep;
-}
 
-bool isFullBiTree(Node* rt) {
-	tot_node = 0;
-	int dep = preOrderTraverse(rt, 0);
-	
-	return tot_node == (int)pow(2, dep - 1);
+	return true;
 }
 
 
 int testBiTree() {
-	Node *rt = (Node *)NULL;
+	Node* rt = (Node*)NULL;
 
-	rt = buildTreeByPreOrder(rt, "abd##eh##i##cf##g##");
+	rt = buildTreeByPreOrder(rt, "abd##e##c#f##", true);
 	printf("%d\n", isFullBiTree(rt));
 
-	rt = buildTreeByPreOrder(rt, "abd##e##cf##g##");
+	rt = buildTreeByPreOrder(rt, "abd##e##cf###", true);
+	printf("%d\n", isFullBiTree(rt));
+
+	rt = buildTreeByPreOrder(rt, "abd##e##cf##g##", true);
 	printf("%d\n", isFullBiTree(rt));
 	return Ok;
 }
